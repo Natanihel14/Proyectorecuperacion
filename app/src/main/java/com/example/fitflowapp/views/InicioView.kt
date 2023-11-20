@@ -1,8 +1,10 @@
 package com.example.fitflowapp.views
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -79,15 +81,29 @@ fun ContentInicioView(it: PaddingValues, navController: NavController, viewModel
                     ) {
                         Text(text = it.usuario)
                         Text(text = it.email)
-                        IconButton(
-                            onClick = { navController.navigate("editar/${it.id}/${it.usuario}/${it.email}") }
+
+                        Row(
+                            modifier = Modifier
+
+                                .padding(8.dp),
+                            horizontalArrangement = Arrangement.SpaceBetween
                         ) {
-                            Icon(imageVector = Icons.Default.Edit, contentDescription = "Editar")
-                        }
-                        IconButton(
-                            onClick = { viewModel.borrarUsuario(it) }
-                        ) {
-                            Icon(imageVector = Icons.Default.Delete, contentDescription = "Borrar")
+                            IconButton(
+                                onClick = { navController.navigate("editar/${it.id}/${it.usuario}/${it.email}") }
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.Edit,
+                                    contentDescription = "Editar"
+                                )
+                            }
+                            IconButton(
+                                onClick = { viewModel.borrarUsuario(it) }
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.Delete,
+                                    contentDescription = "Borrar"
+                                )
+                            }
                         }
                     }
                 }
